@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: CommerceCartAPI
+
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: commerce-service
+    redis:
+      host: localhost
+      port: 6379
+      password: sa
+
+  cache:
+    redis:
+      time-to-live: 60000
+
+platzi:
+  client:
+    url: https://api.escuelajs.co/api/v1/

@@ -9,8 +9,7 @@ spring:
       database: commerce-service
     redis:
       host: localhost
-      port: 6379
-      password: sa
+      port: 6380
 
   cache:
     redis:

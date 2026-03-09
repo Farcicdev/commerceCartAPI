@@ -28,7 +28,7 @@ public class CommerceCart {
 
     public void calculateTotalPrices() {
         this.totalPrice = products.stream()
-                .map(product -> product.getPrices().multiply(BigDecimal.valueOf(product.getQuantity())))
+                .map(product -> product.getPrice().multiply(BigDecimal.valueOf(product.getQuantity())))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 

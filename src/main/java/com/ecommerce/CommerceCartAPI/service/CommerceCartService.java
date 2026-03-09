@@ -4,6 +4,7 @@ import com.ecommerce.CommerceCartAPI.controller.request.CommerceCartRequest;
 import com.ecommerce.CommerceCartAPI.controller.response.PlatziProductResponse;
 import com.ecommerce.CommerceCartAPI.entity.CommerceCart;
 import com.ecommerce.CommerceCartAPI.entity.Product;
+import com.ecommerce.CommerceCartAPI.entity.Status;
 import com.ecommerce.CommerceCartAPI.repository.CommerceCartRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,11 @@ public class CommerceCartService {
 
     public CommerceCart createCart(CommerceCartRequest request) {
 
+        repository.findByClientAndStatus(request.clientId(), Status.OPEN).ifPresent
+                (commerce -> {
+                    throw new IllegalArgumentException("o corrinho ja esta aberto");
+                });
+
         List<Product> products = new ArrayList<>();
 
         request.products().forEach(product -> {
@@ -35,6 +41,8 @@ public class CommerceCartService {
         });
 
         CommerceCart commmerce = CommerceCart.builder()
+                .client(request.clientId())
+                .status(Status.OPEN)
                 .products(products)
                 .build();
 

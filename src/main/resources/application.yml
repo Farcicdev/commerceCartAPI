@@ -2,11 +2,12 @@ spring:
   application:
     name: CommerceCartAPI
 
+
+  mongodb:
+    host: localhost
+    port: 27017
+    database: commerce-service
   data:
-    mongodb:
-      host: localhost
-      port: 27017
-      database: commerce-service
     redis:
       host: localhost
       port: 6380
